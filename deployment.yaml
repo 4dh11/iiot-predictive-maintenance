@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iiot-maintenance-deployment
+  labels:
+    app: iiot-maintenance
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: iiot-maintenance
+  template:
+    metadata:
+      labels:
+        app: iiot-maintenance
+    spec:
+      containers:
+      - name: iiot-maintenance-container
+        image: 4dh11/iiot-predictive-maintenance:v1.0
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
